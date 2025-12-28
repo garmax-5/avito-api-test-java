@@ -364,8 +364,8 @@ GET /api/1/item/{id} — Получить объявление по иденти
 
 ```json
 {
-  "result": "",
-  "status": ""
+  "result": "<string>",
+  "status": "<string>"
 }
 ```
 
@@ -570,8 +570,8 @@ GET /api/1/statistic/{id} — Получить статистику по объ�
 
 ```json
 {
-  "result": "",
-  "status": ""
+  "result": "<string>",
+  "status": "<string>"
 }
 ```
 
@@ -672,8 +672,8 @@ GET /api/2/statistic/{id} — Получить статистику по объ�
 
 ```json
 {
-  "result": "",
-  "status": ""
+  "result": "<string>",
+  "status": "<string>"
 }
 ```
 
@@ -702,7 +702,7 @@ GET /api/2/statistic/{id} — Получить статистику по объ�
 
 ```json
 {
-  "result": "",
-  "status": ""
+  "result": "<string>",
+  "status": "<string>"
 }
 ```
