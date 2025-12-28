@@ -15,23 +15,14 @@ POST /api/1/item — Сохранить объявление
 
 ```json
 {
-
   "sellerID": 111111,
-
   "name": "testItem",
-
   "price": 9900,
-
   "statistics": {
-
   "likes": 21,
-
   "viewCount": 11,
-
   "contacts": 43
-
   }
-
 }
 ```
 
@@ -49,27 +40,16 @@ POST /api/1/item — Сохранить объявление
 
 ```json
 {
-
   "id": <генерация нового значения типа string>,
-
   "sellerId": 111111,
-
   "name": "testItem",
-
   "price": 9900,
-
   "createdAt": <генерация нового значения типа string>,
-
   "statistics": {
-
   "likes": 21,
-
   "viewCount": 11,
-
   "contacts": 43
-
   }
-
 }
 ```
 
@@ -107,21 +87,13 @@ POST /api/1/item — Сохранить объявление
 
 ```json
 {
-
-  "result": {
-
-  "message": "",
-
-  "messages": {
-
-  "": ""
-
-  }
-
-  },
-
-  "status": ""
-
+  "result": {
+    "message": "<string>",
+    "messages": {
+      "<string>": "<string>"
+    }
+  },
+  "status": "<string>"
 }
 ```
 
@@ -142,23 +114,14 @@ POST /api/1/item — Сохранить объявление
 
 ```json
 {
-
   "sellerID": "test111111",
-
   "name": "testItem",
-
   "price": 9900,
-
   "statistics": {
-
   "likes": 21,
-
   "viewCount": 11,
-
   "contacts": 43
-
   }
-
 }
 ```
 
@@ -176,21 +139,13 @@ POST /api/1/item — Сохранить объявление
 
 ```json
 {
-
-  "result": {
-
-  "message": "",
-
-  "messages": {
-
-  "": ""
-
-  }
-
-  },
-
-  "status": ""
-
+  "result": {
+    "message": "<string>",
+    "messages": {
+      "<string>": "<string>"
+    }
+  },
+  "status": "<string>"
 }
 ```
 
@@ -227,21 +182,13 @@ POST /api/1/item — Сохранить объявление
 
 ```json
 {
-
-  "result": {
-
-  "message": "",
-
-  "messages": {
-
-  "": ""
-
-  }
-
-  },
-
-  "status": ""
-
+  "result": {
+    "message": "<string>",
+    "messages": {
+      "<string>": "<string>"
+    }
+  },
+  "status": "<string>"
 }
 ```
 
@@ -262,23 +209,14 @@ POST /api/1/item — Сохранить объявление
 
 ```json
 {
-
   "sellerID": 111111,
-
   "name": "testItem",
-
   "price": "9900",
-
   "statistics": {
-
   "likes": 21,
-
   "viewCount": 11,
-
   "contacts": 43
-
   }
-
 }
 ```
 
@@ -296,21 +234,13 @@ POST /api/1/item — Сохранить объявление
 
 ```json
 {
-
-  "result": {
-
-  "message": "",
-
-  "messages": {
-
-  "": ""
-
-  }
-
-  },
-
-  "status": ""
-
+  "result": {
+    "message": "<string>",
+    "messages": {
+      "<string>": "<string>"
+    }
+  },
+  "status": "<string>"
 }
 ```
 
@@ -331,21 +261,13 @@ POST /api/1/item — Сохранить объявление
 
 ```json
 {
-
   "sellerID": 111111,
-
   "name": "testItem",
-
   "price": 9900,
-
   "statistics": {
-
   "likes": 21,
-
   "viewCount": 11,
-
   "contacts": 43
-
 }
 ```
 
@@ -363,21 +285,13 @@ POST /api/1/item — Сохранить объявление
 
 ```json
 {
-
-  "result": {
-
-  "message": "",
-
-  "messages": {
-
-  "": ""
-
-  }
-
-  },
-
-  "status": ""
-
+  "result": {
+    "message": "<string>",
+    "messages": {
+      "<string>": "<string>"
+    }
+  },
+  "status": "<string>"
 }
 ```
 
@@ -410,31 +324,18 @@ GET /api/1/item/{id} — Получить объявление по иденти
 
 ```json
 [
-
   {
-
   "id": "",
-
   "sellerId": ,
-
   "name": "",
-
   "price": ,
-
   "createdAt": "",
-
   "statistics": {
-
   "likes": ,
-
   "viewCount": ,
-
   "contacts":
-
   }
-
   }
-
 ]
 ```
 
@@ -463,11 +364,8 @@ GET /api/1/item/{id} — Получить объявление по иденти
 
 ```json
 {
-
   "result": "",
-
   "status": ""
-
 }
 ```
 
@@ -496,21 +394,13 @@ GET /api/1/item/{id} — Получить объявление по иденти
 
 ```json
 {
-
-  "result": {
-
-  "message": "",
-
-  "messages": {
-
-  "": ""
-
-  }
-
-  },
-
-  "status": ""
-
+  "result": {
+    "message": "<string>",
+    "messages": {
+      "<string>": "<string>"
+    }
+  },
+  "status": "<string>"
 }
 ```
 
@@ -541,31 +431,18 @@ GET /api/1/{sellerID}/item — Получить все объявления пр
 
 ```json
 [
-
   {
-
   "id": "",
-
   "sellerId": ,
-
   "name": "",
-
   "price": ,
-
   "createdAt": "",
-
   "statistics": {
-
   "likes": ,
-
   "viewCount": ,
-
   "contacts":
-
   }
-
   }
-
 ]
 ```
 
@@ -621,21 +498,13 @@ GET /api/1/{sellerID}/item — Получить все объявления пр
 
 ```json
 {
-
-  "result": {
-
-  "message": "",
-
-  "messages": {
-
-  "": ""
-
-  }
-
-  },
-
-  "status": ""
-
+  "result": {
+    "message": "<string>",
+    "messages": {
+      "<string>": "<string>"
+    }
+  },
+  "status": "<string>"
 }
 ```
 
@@ -668,17 +537,11 @@ GET /api/1/statistic/{id} — Получить статистику по объ�
 
 ```json
 [
-
   {
-
   "likes": ,
-
   "viewCount": ,
-
   "contacts":
-
   }
-
 ]
 ```
 
@@ -707,11 +570,8 @@ GET /api/1/statistic/{id} — Получить статистику по объ�
 
 ```json
 {
-
   "result": "",
-
   "status": ""
-
 }
 ```
 
@@ -740,21 +600,13 @@ GET /api/1/statistic/{id} — Получить статистику по объ�
 
 ```json
 {
-
-  "result": {
-
-  "message": "",
-
-  "messages": {
-
-  "": ""
-
-  }
-
-  },
-
-  "status": ""
-
+  "result": {
+    "message": "<string>",
+    "messages": {
+      "<string>": "<string>"
+    }
+  },
+  "status": "<string>"
 }
 ```
 
@@ -787,17 +639,11 @@ GET /api/2/statistic/{id} — Получить статистику по объ�
 
 ```json
 [
-
   {
-
   "likes": ,
-
   "viewCount": ,
-
   "contacts":
-
   }
-
 ]
 ```
 
@@ -826,11 +672,8 @@ GET /api/2/statistic/{id} — Получить статистику по объ�
 
 ```json
 {
-
   "result": "",
-
   "status": ""
-
 }
 ```
 
@@ -859,10 +702,7 @@ GET /api/2/statistic/{id} — Получить статистику по объ�
 
 ```json
 {
-
   "result": "",
-
   "status": ""
-
 }
 ```
