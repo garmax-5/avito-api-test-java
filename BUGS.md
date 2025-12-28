@@ -45,7 +45,7 @@
 3. В ответе возвращается только поле status без данных объявления:
 ```json
 {
-  "status": "Сохранили объявление - 1ba90616-edfe-4a90-8e3d-8a95577c3791"
+  "status": "Сохранили объявление - <UUID>"
 }
 ```
 
@@ -70,8 +70,8 @@
 3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 ```json
 {
-  "result": "",
-  "status": ""
+  "result": "<string>",
+  "status": "<string>"
 }
 ```
 
@@ -81,13 +81,13 @@
 3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 ```json
 {
-  "result": {
-    "message": "",
-    "messages": {
-      "": ""
-    }
-  },
-  "status": ""
+  "result": {
+    "message": "<string>",
+    "messages": {
+      "<string>": "<string>"
+    }
+  },
+  "status": "<string>"
 }
 ```
 
@@ -112,8 +112,8 @@
 3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 ```json
 {
-  "result": "",
-  "status": ""
+  "result": "<string>",
+  "status": "<string>"
 }
 ```
 
@@ -123,13 +123,13 @@
 3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 ```json
 {
-  "result": {
-    "message": "",
-    "messages": {
-      "": ""
-    }
-  },
-  "status": ""
+  "result": {
+    "message": "<string>",
+    "messages": {
+      "<string>": "<string>"
+    }
+  },
+  "status": "<string>"
 }
 ```
 
@@ -154,8 +154,8 @@
 3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 ```json
 {
-  "result": "",
-  "status": ""
+  "result": "<string>",
+  "status": "<string>"
 }
 ```
 
@@ -165,13 +165,13 @@
 3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 ```json
 {
-  "result": {
-    "message": "",
-    "messages": {
-      "": ""
-    }
-  },
-  "status": ""
+  "result": {
+    "message": "<string>",
+    "messages": {
+      "<string>": "<string>"
+    }
+  },
+  "status": "<string>"
 }
 ```
 
@@ -196,8 +196,8 @@
 3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 ```json
 {
-  "result": "",
-  "status": ""
+  "result": "<string>",
+  "status": "<string>"
 }
 ```
 
@@ -207,13 +207,13 @@
 3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 ```json
 {
-  "result": {
-    "message": "",
-    "messages": {
-      "": ""
-    }
-  },
-  "status": ""
+  "result": {
+    "message": "<string>",
+    "messages": {
+      "<string>": "<string>"
+    }
+  },
+  "status": "<string>"
 }
 ```
 
