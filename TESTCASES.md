@@ -1,1170 +1,868 @@
-##### **POST /api/1/item — Сохранить объявление**
+POST /api/1/item — Сохранить объявление
 
-
-
-###### **testcase1-1. Сохранение объявления с валидными данными**
-
-
+## testcase1-1. Сохранение объявления с валидными данными
 
 **Предусловие:**
 
+**Headers request:**
 
-
-Headers request:
-
- 	Content-Type: application/json
-
- 	Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Тестовые данные:**
 
+**Тело запроса:**
 
-
-Тело запроса:
-
+```json
 {
 
-  "sellerID": 111111,
+  "sellerID": 111111,
 
-  "name": "testItem",
+  "name": "testItem",
 
-  "price": 9900,
+  "price": 9900,
 
-  "statistics": {
+  "statistics": {
 
-    "likes": 21,
+  "likes": 21,
 
-    "viewCount": 11,
+  "viewCount": 11,
 
-    "contacts": 43
+  "contacts": 43
 
-  }
+  }
 
 }
-
-
+```
 
 **Шаги:**
 
+1. Отправить POST-запрос на https://qa-internship.avito.com/api/1/item
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить POST-запрос на https://qa-internship.avito.com/api/1/item
+1. Запрос успешно отправлен на сервер
+2. HTTP Status: 200 OK
+3. Создан первый объект объявления с id = <генерируется новое значение> Тело ответа в формате JSON возвращается от сервера и будет иметь следующий вид:
 
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
- 
-
- 	1. Запрос успешно отправлен на сервер
-
- 	2. HTTP Status: 200 OK
-
- 	3. Создан первый объект объявления с id = <генерируется новое значение>
-Тело ответа в формате JSON возвращается от сервера и будет иметь следующий вид:
-
+```json
 {
 
-  "id": <генерация нового значения типа string>,
+  "id": <генерация нового значения типа string>,
 
-  "sellerId": 111111,
+  "sellerId": 111111,
 
-  "name": "testItem",
+  "name": "testItem",
 
-  "price": 9900,
+  "price": 9900,
 
-  "createdAt": <генерация нового значения типа string>,
+  "createdAt": <генерация нового значения типа string>,
 
-  "statistics": {
+  "statistics": {
 
-    "likes": 21,
+  "likes": 21,
 
-    "viewCount": 11,
+  "viewCount": 11,
 
-    "contacts": 43
+  "contacts": 43
 
-  }
+  }
 
 }
+```
 
+---
 
-
-###### **testcase1-2. Сохранение объявления с отсутствием обязательных полей**
-
-
+## testcase1-2. Сохранение объявления с отсутствием обязательных полей
 
 **Предусловие:**
 
+**Headers request:**
 
-
- 	Headers request:
-
- 		Content-Type: application/json
-
- 		Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Тестовые данные:**
 
-
-
-1. отсутствует sellerID: { "name": "testItem", "price": 9900, "statistics": {"likes":21,"viewCount":11,"contacts":43} }
-2. отсутствует name: { "sellerID":111111, "price":9900, "statistics":{"likes":21,"viewCount":11,"contacts":43} }
-3. отсутствует price: { "sellerID":111111, "name":"testItem", "statistics":{"likes":21,"viewCount":11,"contacts":43} }
-4. отсутствует statistics: { "sellerID":111111, "name":"testItem", "price":9900 }
-
-
+```text
+отсутствует sellerID: { "name": "testItem", "price": 9900, "statistics": {"likes":21,"viewCount":11,"contacts":43} }
+отсутствует name: { "sellerID":111111, "price":9900, "statistics":{"likes":21,"viewCount":11,"contacts":43} }
+отсутствует price: { "sellerID":111111, "name":"testItem", "statistics":{"likes":21,"viewCount":11,"contacts":43} }
+отсутствует statistics: { "sellerID":111111, "name":"testItem", "price":9900 }
+```
 
 **Шаги:**
 
+1. Отправить POST-запрос на https://qa-internship.avito.com/api/1/item
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить POST-запрос на https://qa-internship.avito.com/api/1/item
+1. Запрос не выполнен из-за отсутствия обязательного поля
+2. HTTP Status: 400 Bad Request
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
-
-
- 	1. Запрос не выполнен из-за отсутствия обязательного поля
-
- 	2. HTTP Status: 400 Bad Request
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
+```json
 {
 
-  "result": {
+  "result": {
 
-    "message": "<string>",
+  "message": "",
 
-    "messages": {
+  "messages": {
 
-      "<string>": "<string>"
+  "": ""
 
-    }
+  }
 
-  },
+  },
 
-  "status": "<string>"
+  "status": ""
 
 }
+```
 
+---
 
-
-###### **testcase1-3. Сохранение объявления с некорректным типом идентификатора**
-
-
+## testcase1-3. Сохранение объявления с некорректным типом идентификатора
 
 **Предусловие:**
 
+**Headers request:**
 
-
- 	Headers request:
-
- 		Content-Type: application/json
-
- 		Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Тестовые данные:**
 
+**Тело запроса:**
 
-
-Тело запроса:
-
+```json
 {
 
-  "sellerID": "test111111",
+  "sellerID": "test111111",
 
-  "name": "testItem",
+  "name": "testItem",
 
-  "price": 9900,
+  "price": 9900,
 
-  "statistics": {
+  "statistics": {
 
-    "likes": 21,
+  "likes": 21,
 
-    "viewCount": 11,
+  "viewCount": 11,
 
-    "contacts": 43
+  "contacts": 43
 
-  }
+  }
 
 }
-
-
+```
 
 **Шаги:**
 
+1. Отправить POST-запрос на https://qa-internship.avito.com/api/1/item
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить POST-запрос на https://qa-internship.avito.com/api/1/item
+1. Запрос не выполнен из-за некорректного типа поля sellerID
+2. HTTP Status: 400 Bad Request
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
-
-
- 	1. Запрос не выполнен из-за некорректного типа поля sellerID
-
- 	2. HTTP Status: 400 Bad Request
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
+```json
 {
 
-  "result": {
+  "result": {
 
-    "message": "<string>",
+  "message": "",
 
-    "messages": {
+  "messages": {
 
-      "<string>": "<string>"
+  "": ""
 
-    }
+  }
 
-  },
+  },
 
-  "status": "<string>"
+  "status": ""
 
 }
+```
 
+---
 
-
-###### **testcase1-4. Сохранение объявления с некорректными типами полей внутри statistics**
-
-
+## testcase1-4. Сохранение объявления с некорректными типами полей внутри statistics
 
 **Предусловие:**
 
+**Headers request:**
 
-
- 	Headers request:
-
- 		Content-Type: application/json
-
- 		Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Тестовые данные:**
 
-
-
-1. некорректно поле likes: { "name": "sellerID": 111111, "testItem", "price": 9900, "statistics": {"likes":"twenty one","viewCount":11,"contacts":43} }
-2. некорректно поле viewCount: { "name": "sellerID": 111111, "testItem", "price": 9900, "statistics": {"likes":21,"viewCount":"eleven","contacts":43} }
-3. некорректно поле contacts: { "name": "sellerID": 111111, "testItem", "price": 9900, "statistics": {"likes":21,"viewCount":11,"contacts":"forty three"} }
-
-
+```text
+некорректно поле likes: { "name": "sellerID": 111111, "testItem", "price": 9900, "statistics": {"likes":"twenty one","viewCount":11,"contacts":43} }
+некорректно поле viewCount: { "name": "sellerID": 111111, "testItem", "price": 9900, "statistics": {"likes":21,"viewCount":"eleven","contacts":43} }
+некорректно поле contacts: { "name": "sellerID": 111111, "testItem", "price": 9900, "statistics": {"likes":21,"viewCount":11,"contacts":"forty three"} }
+```
 
 **Шаги:**
 
+1. Отправить POST-запрос на https://qa-internship.avito.com/api/1/item
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить POST-запрос на https://qa-internship.avito.com/api/1/item
+1. Запрос не выполнен из-за некорректных типов полей
+2. HTTP Status: 400 Bad Request
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
-
-
- 	1. Запрос не выполнен из-за некорректных типов полей
-
- 	2. HTTP Status: 400 Bad Request
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
+```json
 {
 
-  "result": {
+  "result": {
 
-    "message": "<string>",
+  "message": "",
 
-    "messages": {
+  "messages": {
 
-      "<string>": "<string>"
+  "": ""
 
-    }
+  }
 
-  },
+  },
 
-  "status": "<string>"
+  "status": ""
 
 }
+```
 
+---
 
-
-###### **testcase1-5. Сохранение объявления с некорректными типом поля price**
-
-
+## testcase1-5. Сохранение объявления с некорректными типом поля price
 
 **Предусловие:**
 
+**Headers request:**
 
-
- 	Headers request:
-
- 		Content-Type: application/json
-
- 		Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Тестовые данные:**
 
+**Тело запроса:**
 
-
-Тело запроса:
-
+```json
 {
 
-  "sellerID": 111111,
+  "sellerID": 111111,
 
-  "name": "testItem",
+  "name": "testItem",
 
-  "price": "9900",
+  "price": "9900",
 
-  "statistics": {
+  "statistics": {
 
-    "likes": 21,
+  "likes": 21,
 
-    "viewCount": 11,
+  "viewCount": 11,
 
-    "contacts": 43
+  "contacts": 43
 
-  }
+  }
 
 }
-
-
+```
 
 **Шаги:**
 
+1. Отправить POST-запрос на https://qa-internship.avito.com/api/1/item
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить POST-запрос на https://qa-internship.avito.com/api/1/item
+1. Запрос не выполнен из-за некорректного типа поля
+2. HTTP Status: 400 Bad Request
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
-
-
- 	1. Запрос не выполнен из-за некорректного типа поля
-
- 	2. HTTP Status: 400 Bad Request
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
+```json
 {
 
-  "result": {
+  "result": {
 
-    "message": "<string>",
+  "message": "",
 
-    "messages": {
+  "messages": {
 
-      "<string>": "<string>"
+  "": ""
 
-    }
+  }
 
-  },
+  },
 
-  "status": "<string>"
+  "status": ""
 
 }
+```
 
+---
 
-
-
-
-###### **testcase1-6. Отправка невалидного JSON**
-
-
+## testcase1-6. Отправка невалидного JSON
 
 **Предусловие:**
 
+**Headers request:**
 
-
- 	Headers request:
-
- 		Content-Type: application/json
-
- 		Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Тестовые данные:**
 
+**Тело запроса:**
 
-
-Тело запроса:
-
+```json
 {
 
-  "sellerID": 111111,
+  "sellerID": 111111,
 
-  "name": "testItem",
+  "name": "testItem",
 
-  "price": 9900,
+  "price": 9900,
 
-  "statistics": {
+  "statistics": {
 
-    "likes": 21,
+  "likes": 21,
 
-    "viewCount": 11,
+  "viewCount": 11,
 
-    "contacts": 43
+  "contacts": 43
 
 }
-
-
+```
 
 **Шаги:**
 
+1. Отправить POST-запрос на https://qa-internship.avito.com/api/1/item
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить POST-запрос на https://qa-internship.avito.com/api/1/item
+1. Запрос не выполнен из-за невалидного JSON
+2. HTTP Status: 400 Bad Request
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
-
-
- 	1. Запрос не выполнен из-за невалидного JSON
-
- 	2. HTTP Status: 400 Bad Request
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
+```json
 {
 
-  "result": {
+  "result": {
 
-    "message": "<string>",
+  "message": "",
 
-    "messages": {
+  "messages": {
 
-      "<string>": "<string>"
+  "": ""
 
-    }
+  }
 
-  },
+  },
 
-  "status": "<string>"
+  "status": ""
 
 }
+```
 
+---
 
+GET /api/1/item/{id} — Получить объявление по идентификатору
 
-##### **GET /api/1/item/{id} — Получить объявление по идентификатору**
-
-
-
-###### **testcase2-1. Получение объявления с существующим идентификатором**
-
-
+## testcase2-1. Получение объявления с существующим идентификатором
 
 **Предусловие:**
 
+1. Headers request:
 
+- Content-Type: application/json
+- Accept: application/json
 
- 	1. Headers request:
-
- 		Content-Type: application/json
-
- 		Accept: application/json
-
- 	2. Сохранить объявление через POST-запрос, сохранить id из ответа
-
-
+2. Сохранить объявление через POST-запрос, сохранить id из ответа
 
 **Шаги:**
 
+1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/item/{id}
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/item/{id}
+1. Запрос успешно отправлен на сервер
+2. HTTP Status: 200 OK
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
+```json
+[
 
- 	3. Проверить тело ответа от сервера
+  {
 
+  "id": "",
 
+  "sellerId": ,
 
-Ожидаемый результат:
+  "name": "",
 
- 
+  "price": ,
 
- 	1. Запрос успешно отправлен на сервер
+  "createdAt": "",
 
- 	2. HTTP Status: 200 OK
+  "statistics": {
 
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
+  "likes": ,
 
-\[
+  "viewCount": ,
 
-  {
+  "contacts":
 
-    "id": "<string>",
+  }
 
-    "sellerId": <int>,
-
-    "name": "<string>",
-
-    "price": <int>,
-
-    "createdAt": "<string>",
-
-    "statistics": {
-
-      "likes": <int>,
-
-      "viewCount": <int>,
-
-      "contacts": <int>
-
-    }
-
-  }
+  }
 
 ]
+```
 
+---
 
-
-###### **testcase2-2. Получение объявления с несуществующим идентификатором**
-
-
+## testcase2-2. Получение объявления с несуществующим идентификатором
 
 **Предусловие:**
 
+**Headers request:**
 
-
-Headers request:
-
- 	Content-Type: application/json
-
- 	Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Шаги:**
 
+1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/item/{id}
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/item/{id}
+1. Запрос успешно отправлен на сервер
+2. HTTP Status: 404 Not Found
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
- 
-
- 	1. Запрос успешно отправлен на сервер
-
- 	2. HTTP Status: 404 Not Found
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
+```json
 {
 
-  "result": "<string>",
+  "result": "",
 
-  "status": "<string>"
+  "status": ""
 
 }
+```
 
+---
 
-
-###### **testcase2-3. Получение объявления с невалидным идентификатором**
-
-
+## testcase2-3. Получение объявления с невалидным идентификатором
 
 **Предусловие:**
 
+**Headers request:**
 
-
-Headers request:
-
- 	Content-Type: application/json
-
- 	Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Шаги:**
 
+1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/item/{id}
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/item/{id}
+1. Запрос отклонён из-за некорректного значения идентификатора
+2. HTTP Status: 400 Bad Request
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
- 
-
- 	1. Запрос отклонён из-за некорректного значения идентификатора
-
- 	2. HTTP Status: 400 Bad Request
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
+```json
 {
 
-  "result": {
+  "result": {
 
-    "message": "<string>",
+  "message": "",
 
-    "messages": {
+  "messages": {
 
-      "<string>": "<string>"
+  "": ""
 
-    }
+  }
 
-  },
+  },
 
-  "status": "<string>"
+  "status": ""
 
 }
+```
 
+---
 
+GET /api/1/{sellerID}/item — Получить все объявления продавца
 
-
-
-##### **GET /api/1/{sellerID}/item — Получить все объявления продавца**
-
-
-
-###### **testcase3-1. Получение всех объявлений существующего продавца**
-
-
+## testcase3-1. Получение всех объявлений существующего продавца
 
 **Предусловие:**
 
+**Headers request:**
 
-
-Headers request:
-
- 	Content-Type: application/json
-
- 	Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Шаги:**
 
+1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/{sellerID}/item
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/{sellerID}/item
+1. Запрос успешно отправлен на сервер
+2. HTTP Status: 200 OK
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
+```json
+[
 
- 	3. Проверить тело ответа от сервера
+  {
 
+  "id": "",
 
+  "sellerId": ,
 
-Ожидаемый результат:
+  "name": "",
 
- 
+  "price": ,
 
- 	1. Запрос успешно отправлен на сервер
+  "createdAt": "",
 
- 	2. HTTP Status: 200 OK
+  "statistics": {
 
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
+  "likes": ,
 
-\[
+  "viewCount": ,
 
-  {
+  "contacts":
 
-    "id": "<string>",
+  }
 
-    "sellerId": <int>,
-
-    "name": "<string>",
-
-    "price": <int>,
-
-    "createdAt": "<string>",
-
-    "statistics": {
-
-      "likes": <int>,
-
-      "viewCount": <int>,
-
-      "contacts": <int>
-
-    }
-
-  }
+  }
 
 ]
+```
 
+---
 
-
-###### **testcase3-2. Получение всех объявлений несуществующего продавца**
-
-
-
-**Предусловие:**
-
-
-
-Headers request:
-
- 	Content-Type: application/json
-
- 	Accept: application/json
-
-
-
-**Шаги:**
-
-
-
- 	1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/{sellerID}/item
-
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
- 
-
- 	1. Запрос успешно отправлен на сервер
-
- 	2. HTTP Status: 200 OK
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
-\[]
-
-
-
-###### **testcase3-3. Получение всех объявлений c невалидным идентификатором**
-
-
+## testcase3-2. Получение всех объявлений несуществующего продавца
 
 **Предусловие:**
 
+**Headers request:**
 
-
-Headers request:
-
- 	Content-Type: application/json
-
- 	Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Шаги:**
 
+1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/{sellerID}/item
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/{sellerID}/item
+1. Запрос успешно отправлен на сервер
+2. HTTP Status: 200 OK
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
+```json
+[]
+```
 
- 	3. Проверить тело ответа от сервера
+---
 
+## testcase3-3. Получение всех объявлений c невалидным идентификатором
 
+**Предусловие:**
 
-Ожидаемый результат:
+**Headers request:**
 
- 
+- Content-Type: application/json
+- Accept: application/json
 
- 	1. Запрос отклонён из-за некорректного значения sellerID
+**Шаги:**
 
- 	2. HTTP Status: 400 Bad Request
+1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/{sellerID}/item
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
+**Ожидаемый результат:**
 
+1. Запрос отклонён из-за некорректного значения sellerID
+2. HTTP Status: 400 Bad Request
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
+
+```json
 {
 
-  "result": {
+  "result": {
 
-    "message": "<string>",
+  "message": "",
 
-    "messages": {
+  "messages": {
 
-      "<string>": "<string>"
+  "": ""
 
-    }
+  }
 
-  },
+  },
 
-  "status": "<string>"
+  "status": ""
 
 }
+```
 
+---
 
+GET /api/1/statistic/{id} — Получить статистику по объявлению
 
-
-
-##### **GET /api/1/statistic/{id} — Получить статистику по объявлению**
-
-
-
-###### **testcase4-1. Получение статистики по существующему идентификатору**
-
-
+## testcase4-1. Получение статистики по существующему идентификатору
 
 **Предусловие:**
 
+1. Headers request:
 
+- Content-Type: application/json
+- Accept: application/json
 
- 	1. Headers request:
-
- 		Content-Type: application/json
-
- 		Accept: application/json
-
- 	2. Сохранить объявление через POST-запрос, сохранить id из ответа
-
-
+2. Сохранить объявление через POST-запрос, сохранить id из ответа
 
 **Шаги:**
 
+1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/statistic/{id}
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/statistic/{id}
+1. Запрос успешно отправлен на сервер
+2. HTTP Status: 200 OK
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
+```json
+[
 
- 	3. Проверить тело ответа от сервера
+  {
 
+  "likes": ,
 
+  "viewCount": ,
 
-Ожидаемый результат:
+  "contacts":
 
- 
-
- 	1. Запрос успешно отправлен на сервер
-
- 	2. HTTP Status: 200 OK
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
-\[
-
-  {
-
-    "likes": <int>,
-
-    "viewCount": <int>,
-
-    "contacts": <int>
-
-  }
+  }
 
 ]
+```
 
+---
 
-
-###### **testcase4-2. Получение статистики по несуществующему идентификатору**
-
-
+## testcase4-2. Получение статистики по несуществующему идентификатору
 
 **Предусловие:**
 
+**Headers request:**
 
-
-Headers request:
-
- 	Content-Type: application/json
-
- 	Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Шаги:**
 
+1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/statistic/{id}
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/statistic/{id}
+1. Запрос успешно отправлен на сервер
+2. HTTP Status: 404 Not Found
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
- 
-
- 	1. Запрос успешно отправлен на сервер
-
- 	2. HTTP Status: 404 Not Found
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
+```json
 {
 
-  "result": "<string>",
+  "result": "",
 
-  "status": "<string>"
+  "status": ""
 
 }
+```
 
+---
 
-
-###### **testcase4-3. Получение статистики с невалидным идентификатором**
-
-
+## testcase4-3. Получение статистики с невалидным идентификатором
 
 **Предусловие:**
 
+**Headers request:**
 
-
-Headers request:
-
- 	Content-Type: application/json
-
- 	Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Шаги:**
 
+1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/statistic/{id}
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить GET-запрос на https://qa-internship.avito.com/api/1/statistic/{id}
+1. Запрос отклонён из-за некорректного значения id
+2. HTTP Status: 400 Bad Request
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
- 
-
- 	1. Запрос отклонён из-за некорректного значения id
-
- 	2. HTTP Status: 400 Bad Request
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
+```json
 {
 
-  "result": {
+  "result": {
 
-    "message": "<string>",
+  "message": "",
 
-    "messages": {
+  "messages": {
 
-      "<string>": "<string>"
+  "": ""
 
-    }
+  }
 
-  },
+  },
 
-  "status": "<string>"
+  "status": ""
 
 }
+```
 
+---
 
+GET /api/2/statistic/{id} — Получить статистику по объявлению
 
-
-
-##### **GET /api/2/statistic/{id} — Получить статистику по объявлению**
-
-
-
-###### **testcase5-1. Получение статистики по существующему идентификатору**
-
-
+## testcase5-1. Получение статистики по существующему идентификатору
 
 **Предусловие:**
 
+1. Headers request:
 
+- Content-Type: application/json
+- Accept: application/json
 
- 	1. Headers request:
-
- 		Content-Type: application/json
-
- 		Accept: application/json
-
- 	2. Сохранить объявление через POST-запрос, сохранить id из ответа
-
-
+2. Сохранить объявление через POST-запрос, сохранить id из ответа
 
 **Шаги:**
 
+1. Отправить GET-запрос на https://qa-internship.avito.com/api/2/statistic/{id}
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить GET-запрос на https://qa-internship.avito.com/api/2/statistic/{id}
+1. Запрос успешно отправлен на сервер
+2. HTTP Status: 200 OK
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
+```json
+[
 
- 	3. Проверить тело ответа от сервера
+  {
 
+  "likes": ,
 
+  "viewCount": ,
 
-Ожидаемый результат:
+  "contacts":
 
- 
-
- 	1. Запрос успешно отправлен на сервер
-
- 	2. HTTP Status: 200 OK
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
-\[
-
-  {
-
-    "likes": <int>,
-
-    "viewCount": <int>,
-
-    "contacts": <int>
-
-  }
+  }
 
 ]
+```
 
+---
 
-
-###### **testcase5-2. Получение статистики по несуществующему идентификатору**
-
-
-
-**Предусловие:**
-
-
-
-Headers request:
-
- 	Content-Type: application/json
-
- 	Accept: application/json
-
-
-
-**Шаги:**
-
-
-
- 	1. Отправить GET-запрос на https://qa-internship.avito.com/api/2/statistic/{id}
-
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
- 
-
- 	1. Запрос успешно отправлен на сервер
-
- 	2. HTTP Status: 404 Not Found
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
-{
-
-  "result": "<string>",
-
-  "status": "<string>"
-
-}
-
-
-
-###### **testcase5-3. Получение статистики с невалидным идентификатором**
-
-
+## testcase5-2. Получение статистики по несуществующему идентификатору
 
 **Предусловие:**
 
+**Headers request:**
 
-
-Headers request:
-
- 	Content-Type: application/json
-
- 	Accept: application/json
-
-
+- Content-Type: application/json
+- Accept: application/json
 
 **Шаги:**
 
+1. Отправить GET-запрос на https://qa-internship.avito.com/api/2/statistic/{id}
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
 
+**Ожидаемый результат:**
 
- 	1. Отправить GET-запрос на https://qa-internship.avito.com/api/2/statistic/{id}
+1. Запрос успешно отправлен на сервер
+2. HTTP Status: 404 Not Found
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
 
- 	2. Проверить код состояния
-
- 	3. Проверить тело ответа от сервера
-
-
-
-Ожидаемый результат:
-
- 
-
- 	1. Запрос успешно отправлен на сервер
-
- 	2. HTTP Status: 404 Not Found
-
- 	3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
-
+```json
 {
 
-  "result": "<string>",
+  "result": "",
 
-  "status": "<string>"
+  "status": ""
 
 }
+```
 
+---
+
+## testcase5-3. Получение статистики с невалидным идентификатором
+
+**Предусловие:**
+
+**Headers request:**
+
+- Content-Type: application/json
+- Accept: application/json
+
+**Шаги:**
+
+1. Отправить GET-запрос на https://qa-internship.avito.com/api/2/statistic/{id}
+2. Проверить код состояния
+3. Проверить тело ответа от сервера
+
+**Ожидаемый результат:**
+
+1. Запрос успешно отправлен на сервер
+2. HTTP Status: 404 Not Found
+3. Тело ответа в формате JSON возвращается от сервера и содержит информацию:
+
+```json
+{
+
+  "result": "",
+
+  "status": ""
+
+}
+```
